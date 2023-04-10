@@ -23,18 +23,19 @@
       </div>
     </div>
   </div>
-  
+
   <!--SELECT-->
   <div class="row">
     <div class="col-md-4" v-for="select in selects" :key="select.model">
       <div v-if="select.filtro.includes(parseInt(opcion))">
-        <label>{{select.label}}</label>
+        <label>{{ select.label }}</label>
         <select class="form-select" v-model="datos[0][select.model]">
-          <option v-for="option in select.options" :value="option.id">{{option.texto}}</option>
+          <option v-for="option in select.options" :value="option.id" :key="option.id">{{ option.texto }}</option>
         </select>
       </div>
     </div>
   </div>
+
 
   <!--BOTON-->
   <div class="row">
@@ -82,19 +83,19 @@ export default {
           filtro: [3]
         }
       ],
-      selects:[
+      selects: [
         {
           model: 'programa',
           label: 'Programa:',
-          filtro:[1],
-          options:[
+          filtro: [1],
+          options: [
             {
-              id:3,
-              texto:"Erasmus"
+              id: 3,
+              texto: "Erasmus"
             },
             {
-              id:4,
-              texto:"DITIC"
+              id: 4,
+              texto: "DITIC"
             }
           ],
         }
@@ -104,8 +105,8 @@ export default {
           cedula: '',
           nombre: '',
           apellido: '',
-          pasaporte:'',
-          programa:''
+          pasaporte: '',
+          programa: ''
         }
       ]
     }
