@@ -38,7 +38,7 @@
     <div class="col-md-4" v-for="select in selects" :key="select.model">
       <div v-if="select.filtro.includes(datos[0].movilidad)">
         <label>{{ select.label }}</label>
-        <select class="form-select" v-model="datos[0][select.model]">
+        <select class="form-select" v-model="datos[0].programa">
           <option v-for="option in select.options" :value="option.id" :key="option.id">{{ option.texto }}</option>
         </select>
       </div>
@@ -66,9 +66,6 @@
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </div>
-  <div>
-    <p>{{ datos }}</p>
-  </div>
 </template>
 
 <script>
@@ -80,36 +77,36 @@ export default {
           type: 'text',
           model: 'cedula',
           label: 'Cédula:',
-          filtro:'1'
+          filtro: '1'
         },
         {
           type: 'text',
           model: 'nombre',
           label: 'Nombre:',
-          filtro:'2'
+          filtro: '2'
         },
         {
           type: 'text',
           model: 'pasaporte',
           label: 'Pasaporte:',
-          filtro:'3'
+          filtro: '3'
         },
         {
           type: 'text',
           model: 'apellido',
           label: 'Apellido:',
-          filtro:'4'
+          filtro: '4'
         },
         {
           type: 'text',
           model: 'telefono',
           label: 'Telefono:',
-          filtro:'5'
+          filtro: '5'
         }
       ],
       selects: [
         {
-          model: 'programa',
+          model: 'programaEntrada',
           label: 'Programa Entrada:',
           filtro: ["entrada"],
           options: [
@@ -126,7 +123,7 @@ export default {
           ],
         },
         {
-          model: 'programa',
+          model: 'programaSalida',
           label: 'Programa Salida:',
           filtro: ["salida"],
           options: [
@@ -157,14 +154,16 @@ export default {
     }
   },
   methods: {
-    
+
     getInputs() {
       const programa = this.datos[0].programa;
 
-      const select = this.selects.find(s => s.model === 'programa');
+      const modeloSelect = this.datos[0].movilidad === 'entrada' ? 'programaEntrada' : 'programaSalida';
+      const select = this.selects.find(s => s.model === modeloSelect);
+
       const inputs = select.options.find(o => o.id === programa)?.inputs || [];
       return this.inputs.filter(input => inputs.includes(input.filtro));
-      
+
     }
   }
 
