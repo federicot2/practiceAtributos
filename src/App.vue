@@ -14,25 +14,6 @@
   </div>
 
 
-
-
-  <!--DIV CON INPUTS-->
-  <!--<div class="row">
-    <div class="col-md-4" v-for="input in inputs" :key="input.model">
-
-      <div v-if="input.filtro.includes(datos[0].programa)">
-
-        <label>
-          {{ input.label }}
-          <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
-        </label>
-      </div>
-    </div>
-  </div>-->
-
-
-
-
   <!--SELECT-->
   <div class="row">
     <div class="col-md-4" v-for="select in selects" :key="select.model">
@@ -46,7 +27,7 @@
   </div>
 
 
-  <!--INPUTS-->
+  <!--INPUTS
   <div class="row">
     <div class="col-md-4" v-for="input in getInputs()" :key="input.model">
       <div>
@@ -56,7 +37,27 @@
         </label>
       </div>
     </div>
+  </div>-->
+<!--INPUTS-->
+<div class="row">
+  <div class="col-md-4" v-for="input in getInputs()" :key="input.model">
+    <div>
+      <label v-if="input.type !== 'select'">
+        {{ input.label }}
+        <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
+      </label>
+      <label v-else>
+        {{ input.label }}
+        <select v-model="datos[0][input.model]" class="form-control">
+          <option v-for="option in input.options" :value="option" :key="option">{{ option }}</option>
+        </select>
+      </label>
+    </div>
   </div>
+</div>
+
+
+  
 
 
   <!--BOTON-->
@@ -75,34 +76,48 @@ export default {
       inputs: [
         {
           type: 'text',
-          model: 'cedula',
-          label: 'Cédula:',
-          filtro: '1'
-        },
-        {
-          type: 'text',
           model: 'nombre',
           label: 'Nombre:',
-          filtro: '2'
-        },
-        {
-          type: 'text',
-          model: 'pasaporte',
-          label: 'Pasaporte:',
-          filtro: '3'
+          filtro: '1'
         },
         {
           type: 'text',
           model: 'apellido',
           label: 'Apellido:',
-          filtro: '4'
+          filtro: '2'
         },
         {
           type: 'text',
-          model: 'telefono',
-          label: 'Telefono:',
+          model: 'id',
+          label: 'id/cedula:',
+          filtro: '3'
+        },
+        {
+          type: 'text',
+          model: 'origen',
+          label: 'origen:',
+          filtro: '4'
+        },
+        {
+          type: 'date',
+          model: 'date',
+          label: 'fecha:',
           filtro: '5'
+        },
+        {
+          type: 'file',
+          model: 'file',
+          label: 'pdf:',
+          filtro: '6'
+        },
+        {
+          type: 'select',
+          model: 'color',
+          label: 'Color Favorito:',
+          filtro:'7',
+          options: ['rojo', 'azul', 'verde']
         }
+
       ],
       selects: [
         {
@@ -111,13 +126,23 @@ export default {
           filtro: ["entrada"],
           options: [
             {
-              id: 'erasmus',
-              texto: "Erasmus Entrada",
-              inputs: ['2', '4']
+              id: 'iaste',
+              texto: "IASTE Entrada",
+              inputs: ['2', '4', '6','7']
             },
             {
-              id: 'ditic',
-              texto: "DITIC Entrada",
+              id: 'sAcademico',
+              texto: "Semestre Academico Entrada",
+              inputs: ['1', '3', '5']
+            },
+            {
+              id: 'investigacion',
+              texto: "Investigación Entrada",
+              inputs: ['1', '3', '5']
+            },
+            {
+              id: 'estanciaCorta',
+              texto: "Estancias Cortas Entrada",
               inputs: ['1', '3', '5']
             }
           ],
@@ -128,14 +153,24 @@ export default {
           filtro: ["salida"],
           options: [
             {
-              id: 'proSalida1',
-              texto: "programaSalida",
+              id: 'iaste',
+              texto: "IASTE Salida",
               inputs: ['1', '3', '5']
             },
             {
-              id: 'proSalida2',
-              texto: "programaSalida",
-              inputs: ['2', '4']
+              id: 'sAcademico',
+              texto: "Semestre Academico Salida",
+              inputs: ['2', '4', '6']
+            },
+            {
+              id: 'investigacion',
+              texto: "Investigación Salida",
+              inputs: ['1', '3', '5']
+            },
+            {
+              id: 'estanciaCorta',
+              texto: "Estancias Cortas Salida",
+              inputs: ['1', '3', '5']
             }
           ],
         }
