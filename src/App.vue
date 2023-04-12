@@ -38,20 +38,38 @@
       <label v-else>
         {{ input.label }}
         <select v-model="datos[0][input.model]" class="form-control">
-          <option v-for="option in input.options" :value="option.id" :key="option.id">{{ option.text }}</option>
+          <option v-for="option in input.options" :value="option" :key="option.id">{{ option }}</option>
         </select>
       </label>
     </div>
   </div>
 </div>
-
+<div class="row">
+  <div class="col-md-12">
+    
+  </div>
+</div>
   <!--BOTON-->
-  <div class="row">
+  <!--<div class="row">
     <div class="col-md-12">
       <br />
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
+  </div>-->
+  
+  <div class="row">
+  <div class="col-md-12">
+    <br />
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="aceptarTerminos" required>
+      <label class="form-check-label" for="aceptarTerminos">
+        Aceptar Términos y Condiciones
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
+</div>
+
 </template>
 
 <script>
@@ -144,15 +162,7 @@ export default {
           model: 'modalidad',
           label: 'Modalidad:',
           filtro:'11',
-          options: [{
-            id: 1,
-            text:"Presencial"
-          },
-          {
-            id:2,
-            text:"Virtual"
-          }
-        ]
+          options: ['Presencial','Virtual']
         },
         {
           type: 'select',
@@ -218,6 +228,12 @@ export default {
           model: 'cDri',
           label: 'Contacto de Dri:',
           filtro:'21'
+        },
+        {
+          type: 'text',
+          model: 'instDestino',
+          label: 'Institucion de Destino:',
+          filtro:'22'
         },
         {
           type: 'text',
