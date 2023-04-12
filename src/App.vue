@@ -44,11 +44,6 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    
-  </div>
-</div>
   <!--BOTON-->
   <!--<div class="row">
     <div class="col-md-12">
@@ -56,7 +51,7 @@
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </div>-->
-  
+
   <div class="row">
   <div class="col-md-12">
     <br />
@@ -263,12 +258,12 @@ export default {
             {
               id: 'investigacion',
               texto: "Investigación Entrada",
-              inputs: ['1', '2', '3','4','5','5.1','6','7','8','9','11','12','14','17','18','19','20','110']
+              inputs: ['1', '2', '3','4','5','5.1','6','7','8','9','11','12','14','17','18','19','20','22','110']
             },
             {
               id: 'estanciaCorta',
               texto: "Estancias Cortas Entrada",
-              inputs: ['1', '2', '3','4','5','5.1','6','7','8','11','12','14','15','17','18','19','20','21','110']
+              inputs: ['1', '2', '3','4','5','5.1','6','7','8','11','12','14','15','17','18','19','20','21','22','110']
             }
           ],
         },
