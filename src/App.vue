@@ -26,11 +26,11 @@
   <!--INPUTS-->
   <div class="row">
     <div class="col-sm-6" v-for="input in getInputs()" :key="input.model">
-      <label v-if="input.type !== 'select'">
+      <label v-if="input.type !== 'select'" class="d-block">
         {{ input.label }}
         <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
       </label>
-      <label v-else>
+      <label v-else class="d-block">
         {{ input.label }}
         <select v-model="datos[0][input.model]" class="form-select">
           <option v-for="option in input.options" :value="option" :key="option.id">
