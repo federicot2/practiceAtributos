@@ -2,25 +2,23 @@
   <!--SELECT DE MOVILIDAD-->
   <div class="row">
     <div class="col-sm-6">
-      <label>
-        Seleccione Movilidad:
-        <select v-model="datos[0].movilidad" class="form-select">
-          <option value="">Seleccione</option>
-          <option value="entrada">Entrada</option>
-          <option value="salida">Salida</option>
-        </select>
-      </label>
+      <label> Seleccione Movilidad: </label>
+      <select v-model="datos[0].movilidad" class="form-select">
+        <option value="">Seleccione</option>
+        <option value="entrada">Entrada</option>
+        <option value="salida">Salida</option>
+      </select>
+    </div>
 
-      <!--SELECT-->
-      <div class="col-sm-6" v-for="select in selects" :key="select.model">
-        <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
-          <label>{{ select.label }}</label>
-          <select class="form-select" v-model="datos[0].programa">
-            <option v-for="option in select.options" :value="option.id" :key="option.id">
-              {{ option.texto }}
-            </option>
-          </select>
-        </div>
+    <!--SELECT-->
+    <div class="col-sm-6" v-for="select in selects" :key="select.model">
+      <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
+        <label>{{ select.label }}</label>
+        <select class="form-select" v-model="datos[0].programa">
+          <option v-for="option in select.options" :value="option.id" :key="option.id">
+            {{ option.texto }}
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -28,20 +26,18 @@
   <!--INPUTS-->
   <div class="row">
     <div class="col-sm-6" v-for="input in getInputs()" :key="input.model">
-      <div>
-        <label v-if="input.type !== 'select'">
-          {{ input.label }}
-          <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
-        </label>
-        <label v-else>
-          {{ input.label }}
-          <select v-model="datos[0][input.model]" class="form-select">
-            <option v-for="option in input.options" :value="option" :key="option.id">
-              {{ option }}
-            </option>
-          </select>
-        </label>
-      </div>
+      <label v-if="input.type !== 'select'">
+        {{ input.label }}
+        <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
+      </label>
+      <label v-else>
+        {{ input.label }}
+        <select v-model="datos[0][input.model]" class="form-select">
+          <option v-for="option in input.options" :value="option" :key="option.id">
+            {{ option }}
+          </option>
+        </select>
+      </label>
     </div>
   </div>
 
