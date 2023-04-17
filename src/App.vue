@@ -1,17 +1,17 @@
 <template>
   <!--SELECT DE MOVILIDAD-->
-  <div class="row">
-    <div class="col-sm-6">
-      <label> Seleccione Movilidad: </label>
-      <select v-model="datos[0].movilidad" class="form-select">
-        <option value="">Seleccione</option>
-        <option value="entrada">Entrada</option>
-        <option value="salida">Salida</option>
-      </select>
-    </div>
+<div class="row">
+  <div class="col-sm-6">
+    <label>Seleccione Movilidad:</label>
+    <select v-model="datos[0].movilidad" class="form-select">
+      <option value="">Seleccione</option>
+      <option value="entrada">Entrada</option>
+      <option value="salida">Salida</option>
+    </select>
+  </div>
 
-    <!--SELECT-->
-    <div class="col-sm-6" v-for="select in selects" :key="select.model">
+  <div class="col-sm-6">
+    <template v-for="select in selects">
       <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
         <label>{{ select.label }}</label>
         <select class="form-select" v-model="datos[0].programa">
@@ -20,8 +20,10 @@
           </option>
         </select>
       </div>
-    </div>
+    </template>
   </div>
+</div>
+
 
   <!--INPUTS-->
   <div class="row">
