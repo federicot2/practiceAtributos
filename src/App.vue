@@ -1,29 +1,28 @@
 <template>
   <!--SELECT DE MOVILIDAD-->
-<div class="row">
-  <div class="col-sm-6">
-    <label>Seleccione Movilidad:</label>
-    <select v-model="datos[0].movilidad" class="form-select">
-      <option value="">Seleccione</option>
-      <option value="entrada">Entrada</option>
-      <option value="salida">Salida</option>
-    </select>
-  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Seleccione Movilidad:</label>
+      <select v-model="datos[0].movilidad" class="form-select">
+        <option value="">Seleccione</option>
+        <option value="entrada">Entrada</option>
+        <option value="salida">Salida</option>
+      </select>
+    </div>
 
-  <div class="col-sm-6">
-    <template v-for="select in selects">
-      <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
-        <label>{{ select.label }}</label>
-        <select class="form-select" v-model="datos[0].programa">
-          <option v-for="option in select.options" :value="option.id" :key="option.id">
-            {{ option.texto }}
-          </option>
-        </select>
-      </div>
-    </template>
+    <div class="col-sm-6">
+      <template v-for="select in selects">
+        <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
+          <label>{{ select.label }}</label>
+          <select class="form-select" v-model="datos[0].programa">
+            <option v-for="option in select.options" :value="option.id" :key="option.id">
+              {{ option.texto }}
+            </option>
+          </select>
+        </div>
+      </template>
+    </div>
   </div>
-</div>
-
 
   <!--INPUTS-->
   <div class="row">
@@ -69,10 +68,12 @@ export default {
           filtro: '0'
         },
         {
-          type: 'text',
+          type: 'select',
           model: 'nacionalidad',
           label: 'Nacionalidad:',
-          filtro: '1'
+          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
+          ,filtro:'1'
+
         },
         {
           type: 'text',
@@ -109,14 +110,14 @@ export default {
           model: 'origen',
           label: 'Origen:',
           filtro: '6',
-          options: ['Panamá', 'Rep.Chiriqui']
+          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
         },
         {
           type: 'select',
           model: 'destino',
           label: 'Destino:',
           filtro: '7',
-          options: ['Panamá', 'Rep.Chiriqui']
+          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
         },
 
         {
@@ -131,7 +132,7 @@ export default {
           model: 'nivelAcademico',
           label: 'Nivel Academico',
           filtro: '9',
-          options: ['1', '2', '3', '4', '5']
+          options: ['pregado','postgrado']
         },
         {
           type: 'select',
@@ -152,7 +153,7 @@ export default {
           model: 'programa1',
           label: 'Programa:',
           filtro: '12',
-          options: ['1', '2']
+          options: ['PAME', 'Convenio Bilateral', 'SMILE', 'eMOVIES', 'IAESTE', 'ERASMUS', 'otros']
         },
         {
           type: 'select',
@@ -166,14 +167,14 @@ export default {
           model: 'sedeUtp',
           label: 'Sede UTP:',
           filtro: '14',
-          options: ['Central', 'Cocle']
+          options: ['campus central', 'sede Tocumen', 'sede Howard', 'centro regional']
         },
         {
           type: 'select',
-          model: 'facultad',
-          label: 'Facultad UTP:',
+          model: 'unidad',
+          label: 'Unidad UTP:',
           filtro: '15',
-          options: ['Sistema', 'Industrial', 'Civil', 'etc']
+          options: ['Facultad', 'Centro Regional', 'Centro de Investigación']
         },
         {
           type: 'select',
@@ -272,6 +273,7 @@ export default {
                 '7',
                 '8',
                 '9',
+                '10',
                 '11',
                 '12',
                 '16',
@@ -286,6 +288,7 @@ export default {
               id: 'investigacion',
               texto: 'Investigación Entrada',
               inputs: [
+                '0',
                 '1',
                 '2',
                 '3',
@@ -311,6 +314,7 @@ export default {
               id: 'estanciaCorta',
               texto: 'Estancias Cortas Entrada',
               inputs: [
+                '0',
                 '1',
                 '2',
                 '3',
@@ -329,7 +333,6 @@ export default {
                 '19',
                 '20',
                 '21',
-                '22',
                 '110'
               ]
             }
