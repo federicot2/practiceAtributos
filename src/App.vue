@@ -90,13 +90,13 @@ export default {
         {
           type: 'text',
           model: 'id',
-          label: 'id/cedula:',
+          label: 'Documento de Identificación:',
           filtro: '4'
         },
         {
           type: 'text',
-          model: 'pasaporte',
-          label: 'pasaporte:',
+          model: 'numeroPasaporte',
+          label: 'Numero de Pasaporte:',
           filtro: '5'
         },
         {
@@ -106,16 +106,22 @@ export default {
           filtro: '5.1'
         },
         {
+          type: 'date',
+          model: 'expiracionPasaporte',
+          label: 'Fecha de Expiracion de Pasaporte:',
+          filtro: '5.2'
+        },
+        {
           type: 'select',
           model: 'origen',
-          label: 'Origen:',
+          label: ' Pais de Origen:',
           filtro: '6',
           options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
         },
         {
           type: 'select',
           model: 'destino',
-          label: 'Destino:',
+          label: 'Pais de Destino:',
           filtro: '7',
           options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
         },
@@ -209,9 +215,33 @@ export default {
         },
         {
           type: 'text',
-          model: 'cDri',
-          label: 'Contacto de Dri:',
+          model: 'nombreDri',
+          label: 'Nombre Contacto Dri:',
           filtro: '21'
+        },
+        {
+          type: 'text',
+          model: 'apellidoDri',
+          label: 'Apellido Contacto Dri:',
+          filtro: '21.1'
+        },
+        {
+          type: 'text',
+          model: 'correoDri',
+          label: 'Correo Contacto Dri:',
+          filtro: '21.2'
+        },
+        {
+          type: 'text',
+          model: 'numeroDri',
+          label: 'Numero Contacto Dri:',
+          filtro: '21.3'
+        },
+        {
+          type: 'text',
+          model: 'parentescoDri',
+          label: 'Parentesco Contacto Dri:',
+          filtro: '21.4'
         },
         {
           type: 'text',
