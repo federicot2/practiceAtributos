@@ -119,7 +119,7 @@ export default {
         },
         {
           type: 'text',
-          model: 'id',
+          model: 'di',
           label: 'Documento de Identificación:',
           filtro: '4'
         },
