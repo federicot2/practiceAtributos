@@ -12,7 +12,7 @@
 
     <div class="col-sm-6">
       <template v-for="select in selects">
-        <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)">
+        <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)" :key="select.label">
           <label>{{ select.label }}</label>
           <select class="form-select" v-model="datos[0].programa">
             <option v-for="option in select.options" :value="option.id" :key="option.id">
@@ -22,6 +22,7 @@
         </div>
       </template>
     </div>
+
   </div>
 
   <!--INPUTS-->
@@ -51,12 +52,17 @@
           Aceptar Términos y Condiciones
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="button" class="btn btn-primary" @click="enviarDatos">Enviar</button>
     </div>
+  </div>
+
+  <div>
+    <p>{{ datos }}</p>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -71,8 +77,8 @@ export default {
           type: 'select',
           model: 'nacionalidad',
           label: 'Nacionalidad:',
-          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
-          ,filtro:'1'
+          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
+          , filtro: '1'
 
         },
         {
@@ -116,14 +122,14 @@ export default {
           model: 'origen',
           label: ' Pais de Origen:',
           filtro: '6',
-          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
+          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
         },
         {
           type: 'select',
           model: 'destino',
           label: 'Pais de Destino:',
           filtro: '7',
-          options: ['Argentina','Brasil','Canadá','Chile','Colombia','Costa Rica','Cuba','España','Estados Unidos','Francia','Italia','México','Perú','Uruguay','Venezuela','Australia','Ecuador','Reino Unido','Alemania','Suiza','Israel','Japón','Corea del Sur','Países Bajos','China']
+          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
         },
 
         {
@@ -138,7 +144,7 @@ export default {
           model: 'nivelAcademico',
           label: 'Nivel Academico',
           filtro: '9',
-          options: ['pregado','postgrado']
+          options: ['pregado', 'postgrado']
         },
         {
           type: 'select',
@@ -481,10 +487,10 @@ export default {
       datos: [
         {
           movilidad: '',
-          cedula: '',
+          cedula: '898',
           nombre: '',
           apellido: '',
-          pasaporte: '',
+          pasaporte: '45456',
           programa: ''
         }
       ]
@@ -500,7 +506,22 @@ export default {
 
       const inputs = select.options.find((o) => o.id === programa)?.inputs || []
       return this.inputs.filter((input) => inputs.includes(input.filtro))
+    },
+    enviarDatos() {
+      const datosObjeto = {
+        datos: Object.assign({}, this.datos[0])
+      };
+
+      axios.post('http://127.0.0.1:5000/usuarios', datosObjeto)
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
+
   }
+
 }
 </script>
