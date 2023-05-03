@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-6">
       <label>Seleccione Movilidad:</label>
-      <select v-model="datos[0].movilidad" class="form-select">
+      <select v-model="datos.movilidad" class="form-select">
         <option value="">Seleccione</option>
         <option value="entrada">Entrada</option>
         <option value="salida">Salida</option>
@@ -12,9 +12,9 @@
 
     <div class="col-sm-6">
       <template v-for="select in selects">
-        <div class="form-group" v-if="select.filtro.includes(datos[0].movilidad)" :key="select.label">
+        <div class="form-group" v-if="select.filtro.includes(datos.movilidad)" :key="select.label">
           <label>{{ select.label }}</label>
-          <select class="form-select" v-model="datos[0].programa">
+          <select class="form-select" v-model="datos.programa">
             <option v-for="option in select.options" :value="option.id" :key="option.id">
               {{ option.texto }}
             </option>
@@ -22,7 +22,6 @@
         </div>
       </template>
     </div>
-
   </div>
 
   <!--INPUTS-->
@@ -30,11 +29,11 @@
     <div class="col-sm-6" v-for="input in getInputs()" :key="input.model">
       <label v-if="input.type !== 'select'" class="d-block">
         {{ input.label }}
-        <input :type="input.type" v-model="datos[0][input.model]" class="form-control" />
+        <input :type="input.type" v-model="datos[input.model]" class="form-control" />
       </label>
       <label v-else class="d-block">
         {{ input.label }}
-        <select v-model="datos[0][input.model]" class="form-select">
+        <select v-model="datos[input.model]" class="form-select">
           <option v-for="option in input.options" :value="option" :key="option.id">
             {{ option }}
           </option>
@@ -62,7 +61,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -77,9 +76,34 @@ export default {
           type: 'select',
           model: 'nacionalidad',
           label: 'Nacionalidad:',
-          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
-          , filtro: '1'
-
+          options: [
+            'Argentina',
+            'Brasil',
+            'Canadá',
+            'Chile',
+            'Colombia',
+            'Costa Rica',
+            'Cuba',
+            'España',
+            'Estados Unidos',
+            'Francia',
+            'Italia',
+            'México',
+            'Perú',
+            'Uruguay',
+            'Venezuela',
+            'Australia',
+            'Ecuador',
+            'Reino Unido',
+            'Alemania',
+            'Suiza',
+            'Israel',
+            'Japón',
+            'Corea del Sur',
+            'Países Bajos',
+            'China'
+          ],
+          filtro: '1'
         },
         {
           type: 'text',
@@ -122,14 +146,66 @@ export default {
           model: 'origen',
           label: ' Pais de Origen:',
           filtro: '6',
-          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
+          options: [
+            'Argentina',
+            'Brasil',
+            'Canadá',
+            'Chile',
+            'Colombia',
+            'Costa Rica',
+            'Cuba',
+            'España',
+            'Estados Unidos',
+            'Francia',
+            'Italia',
+            'México',
+            'Perú',
+            'Uruguay',
+            'Venezuela',
+            'Australia',
+            'Ecuador',
+            'Reino Unido',
+            'Alemania',
+            'Suiza',
+            'Israel',
+            'Japón',
+            'Corea del Sur',
+            'Países Bajos',
+            'China'
+          ]
         },
         {
           type: 'select',
           model: 'destino',
           label: 'Pais de Destino:',
           filtro: '7',
-          options: ['Argentina', 'Brasil', 'Canadá', 'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'España', 'Estados Unidos', 'Francia', 'Italia', 'México', 'Perú', 'Uruguay', 'Venezuela', 'Australia', 'Ecuador', 'Reino Unido', 'Alemania', 'Suiza', 'Israel', 'Japón', 'Corea del Sur', 'Países Bajos', 'China']
+          options: [
+            'Argentina',
+            'Brasil',
+            'Canadá',
+            'Chile',
+            'Colombia',
+            'Costa Rica',
+            'Cuba',
+            'España',
+            'Estados Unidos',
+            'Francia',
+            'Italia',
+            'México',
+            'Perú',
+            'Uruguay',
+            'Venezuela',
+            'Australia',
+            'Ecuador',
+            'Reino Unido',
+            'Alemania',
+            'Suiza',
+            'Israel',
+            'Japón',
+            'Corea del Sur',
+            'Países Bajos',
+            'China'
+          ]
         },
 
         {
@@ -484,44 +560,36 @@ export default {
           ]
         }
       ],
-      datos: [
-        {
-          movilidad: '',
-          cedula: '898',
-          nombre: '',
-          apellido: '',
-          pasaporte: '45456',
-          programa: ''
-        }
-      ]
+      datos: {
+        movilidad: '',
+        cedula: '',
+        nombre: '',
+        apellido: '',
+        pasaporte: '',
+        programa: ''
+      }
     }
   },
   methods: {
     getInputs() {
-      const programa = this.datos[0].programa
+      const programa = this.datos.programa
 
       const modeloSelect =
-        this.datos[0].movilidad === 'entrada' ? 'programaEntrada' : 'programaSalida'
+        this.datos.movilidad === 'entrada' ? 'programaEntrada' : 'programaSalida'
       const select = this.selects.find((s) => s.model === modeloSelect)
 
       const inputs = select.options.find((o) => o.id === programa)?.inputs || []
       return this.inputs.filter((input) => inputs.includes(input.filtro))
     },
     enviarDatos() {
-      const datosObjeto = {
-        datos: Object.assign({}, this.datos[0])
-      };
-
-      axios.post('http://127.0.0.1:5000/usuarios', datosObjeto)
+      axios.post('http://127.0.0.1:5000/usuarios', this.datos)
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
         })
         .catch(error => {
-          console.log(error)
-        })
+          console.log(error);
+        });
     }
-
   }
-
 }
 </script>
