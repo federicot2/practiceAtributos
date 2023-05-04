@@ -27,10 +27,18 @@
   <!--INPUTS-->
   <div class="row">
     <div class="col-sm-6" v-for="input in getInputs()" :key="input.model">
-      <label v-if="input.type !== 'select'" class="d-block">
+
+      <label v-if="input.type == 'text' " class="d-block">
         {{ input.label }}
         <input :type="input.type" v-model="datos[input.model]" class="form-control" />
       </label>
+
+      <label v-else-if="input.type == 'file'" class="d-block">
+        {{ input.label }}
+        <input :type="input.type" v-model="datos[input.model]" class="form-control" />
+      </label>
+      
+
       <label v-else class="d-block">
         {{ input.label }}
         <select v-model="datos[input.model]" class="form-select">
@@ -61,8 +69,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+import * as uploadService from '../src/services/content'
+import { ref } from 'vue';
 export default {
+  setup() {
+    const file = ref(null);
+
+    return {
+      file
+    };
+  },
   data() {
     return {
       inputs: [
@@ -582,13 +598,13 @@ export default {
       return this.inputs.filter((input) => inputs.includes(input.filtro))
     },
     enviarDatos() {
-      axios.post('http://127.0.0.1:5000/usuarios', this.datos)
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      uploadService.uploadData(this.datos).then((data)=>{
+        console.log(data);
+      })
+    },
+    onChangeFileUpload() {
+        this.file = this.$refs.file[0]; 
+        console.log(this.file);
     }
   }
 }
