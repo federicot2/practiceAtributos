@@ -602,10 +602,6 @@ export default {
         console.log(data);
       })
     },
-    onChangeFileUpload() {
-        this.file = this.$refs.file[0]; 
-        console.log(this.file);
-    }
   }
 }
 </script>
