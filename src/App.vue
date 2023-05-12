@@ -1,5 +1,6 @@
 <template>
   <!--SELECT DE MOVILIDAD-->
+  <form id="uploadForm" enctype="multipart/form-data">
   <div class="row">
     <div class="col-sm-6">
       <label>Seleccione Movilidad:</label>
@@ -35,7 +36,7 @@
 
       <label v-else-if="input.type == 'file'" class="d-block">
         {{ input.label }}
-        <input :type="input.type" v-model="datos[input.model]" class="form-control" />
+        <input :type="input.type" name="contenido" id="contenido" class="form-control" />
       </label>
       
 
@@ -64,8 +65,10 @@
   </div>
 
   <div>
+    {{ this.$refs.archivo }}
     <p>{{ datos }}</p>
   </div>
+  </form>
 </template>
 
 <script>
@@ -598,7 +601,11 @@ export default {
       return this.inputs.filter((input) => inputs.includes(input.filtro))
     },
     enviarDatos() {
-      uploadService.uploadData(this.datos).then((data)=>{
+      const formData = new FormData(document.getElementById('uploadForm'));
+      formData.append('titulo', 'dols')
+
+      console.log(formData)
+      uploadService.uploadData(formData).then((data)=>{
         console.log(data);
       })
     },
