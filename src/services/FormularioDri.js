@@ -1,5 +1,7 @@
 import * as uploadService from './content'
 import { ref } from 'vue';
+import { nacionalidades,continente } from './options';
+
 export default {
   setup() {
     const file = ref(null);
@@ -21,33 +23,7 @@ export default {
           type: 'select',
           model: 'nacionalidad',
           label: 'Nacionalidad:',
-          options: [
-            'Argentina',
-            'Brasil',
-            'Canadá',
-            'Chile',
-            'Colombia',
-            'Costa Rica',
-            'Cuba',
-            'España',
-            'Estados Unidos',
-            'Francia',
-            'Italia',
-            'México',
-            'Perú',
-            'Uruguay',
-            'Venezuela',
-            'Australia',
-            'Ecuador',
-            'Reino Unido',
-            'Alemania',
-            'Suiza',
-            'Israel',
-            'Japón',
-            'Corea del Sur',
-            'Países Bajos',
-            'China'
-          ],
+          options: nacionalidades,
           filtro: '1'
         },
         {
@@ -91,66 +67,14 @@ export default {
           model: 'origen',
           label: ' Pais de Origen:',
           filtro: '6',
-          options: [
-            'Argentina',
-            'Brasil',
-            'Canadá',
-            'Chile',
-            'Colombia',
-            'Costa Rica',
-            'Cuba',
-            'España',
-            'Estados Unidos',
-            'Francia',
-            'Italia',
-            'México',
-            'Perú',
-            'Uruguay',
-            'Venezuela',
-            'Australia',
-            'Ecuador',
-            'Reino Unido',
-            'Alemania',
-            'Suiza',
-            'Israel',
-            'Japón',
-            'Corea del Sur',
-            'Países Bajos',
-            'China'
-          ]
+          options: nacionalidades
         },
         {
           type: 'select',
           model: 'destino',
           label: 'Pais de Destino:',
           filtro: '7',
-          options: [
-            'Argentina',
-            'Brasil',
-            'Canadá',
-            'Chile',
-            'Colombia',
-            'Costa Rica',
-            'Cuba',
-            'España',
-            'Estados Unidos',
-            'Francia',
-            'Italia',
-            'México',
-            'Perú',
-            'Uruguay',
-            'Venezuela',
-            'Australia',
-            'Ecuador',
-            'Reino Unido',
-            'Alemania',
-            'Suiza',
-            'Israel',
-            'Japón',
-            'Corea del Sur',
-            'Países Bajos',
-            'China'
-          ]
+          options: nacionalidades
         },
 
         {
@@ -158,7 +82,7 @@ export default {
           model: 'continente',
           label: 'Continente:',
           filtro: '8',
-          options: ['America', 'Asia', 'Africa', 'Oceania', 'Europa']
+          options:continente
         },
         {
           type: 'select',
